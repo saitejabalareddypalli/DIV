@@ -1,0 +1,242 @@
+# Student Notes: Upload a Website to GitHub Using Git
+
+**Topic:** Git & GitHub Practical  
+**Objective:** Upload HTML, CSS, and JavaScript files to a GitHub repository.
+
+## 1. Prerequisites
+
+Install or configure the following:
+
+- **Visual Studio Code** – To create and edit website files.
+- **Git** – To track code changes.
+- **GitHub account** – To store and share your code online.
+- **GitHub CLI (optional)** – To authenticate with GitHub using the terminal.
+
+Check whether Git is installed:
+
+```powershell
+git --version
+```
+
+Example output:
+
+```text
+git version 2.54.0.windows.1
+```
+
+## 2. Create Website Files
+
+Create a folder named `DIV` and add these three files:
+
+```text
+DIV/
+├── index.html
+├── style.css
+└── script.js
+```
+
+- `index.html` – Website structure.
+- `style.css` – Website design and styling.
+- `script.js` – Website functionality.
+
+## 3. Open the Project Folder in PowerShell
+
+Navigate to your project folder:
+
+```powershell
+cd "C:\Users\TECHVITY\OneDrive\Desktop\DIV"
+```
+
+Check the files:
+
+```powershell
+dir
+```
+
+## 4. Initialize Git
+
+Initialize a Git repository inside the project folder:
+
+```powershell
+git init
+```
+
+Check the repository status:
+
+```powershell
+git status
+```
+
+**Note:** If you see `fatal: not a git repository`, navigate to the correct project folder and run `git init` if the folder has not already been initialized.
+
+## 5. Add Files to Git
+
+Add all three files:
+
+```powershell
+git add index.html script.js style.css
+```
+
+Alternatively, add all changes in the current folder:
+
+```powershell
+git add .
+```
+
+Verify the staged files:
+
+```powershell
+git status
+```
+
+## 6. Commit Your Changes
+
+Create a commit with a descriptive message:
+
+```powershell
+git commit -m "website upload"
+```
+
+A commit saves a snapshot of your staged changes in your local Git repository.
+
+## 7. Create a GitHub Repository
+
+1. Open https://github.com/
+2. Sign in to your GitHub account.
+3. Click **New repository**.
+4. Enter the repository name: `DIV`.
+5. Select the appropriate visibility, such as Public or Private.
+6. Create the repository.
+
+Copy the repository URL. For this example:
+
+```text
+https://github.com/saitejabalareddypalli/DIV.git
+```
+
+Replace the username and repository name with your own details.
+
+## 8. Connect Your Local Project to GitHub
+
+Add the GitHub repository as the remote named `origin`:
+
+```powershell
+git remote add origin https://github.com/YOUR_USERNAME/DIV.git
+```
+
+Check the remote:
+
+```powershell
+git remote -v
+```
+
+Rename the current branch to `main`:
+
+```powershell
+git branch -M main
+```
+
+## 9. Authenticate with GitHub
+
+If GitHub rejects your push because of authentication or permissions, verify that you are using the correct GitHub account.
+
+If GitHub CLI is installed, run:
+
+```powershell
+gh auth login
+```
+
+Follow the prompts:
+
+1. Select GitHub.com.
+2. Select HTTPS.
+3. Choose browser authentication.
+4. Complete the login in your browser.
+
+Check the authenticated account:
+
+```powershell
+gh auth status
+```
+
+**Important:** You must have permission to push to the target GitHub repository. Logging into an account that does not have access will not fix a repository permission error.
+
+## 10. Push the Website to GitHub
+
+Upload your local commits:
+
+```powershell
+git push -u origin main
+```
+
+If the push succeeds, GitHub will show your files in the repository.
+
+The `-u` option sets the upstream branch so that future pushes can normally use:
+
+```powershell
+git push
+```
+
+## 11. Update the Website After Making Changes
+
+Whenever you edit your HTML, CSS, or JavaScript files, run:
+
+```powershell
+git status
+git add .
+git commit -m "Update website"
+git push
+```
+
+These commands:
+
+1. Check the changes.
+2. Stage the updated files.
+3. Create a new commit.
+4. Upload the commit to GitHub.
+
+## 12. Common Errors and Solutions
+
+| Error | Reason | Solution |
+|---|---|---|
+| `git: 'v' is not a git command` | Incorrect command | Use `git --version` |
+| `not a git repository` | Git is not initialized in the current folder, or you are in the wrong folder | Navigate to the correct folder and run `git init` if needed |
+| `script.js is not recognized` | The filename was entered as a separate PowerShell command | Use `git add index.html script.js style.css` on one line |
+| `src refspec main does not match any` | The branch name is incorrect or no commit exists on that branch | Commit your files and check the branch using `git branch` |
+| `Permission denied (403)` | The authenticated account lacks permission to push | Sign in with the correct account or request repository access |
+| `remote origin already exists` | A remote named `origin` is already configured | Check it with `git remote -v`; use `git remote set-url origin YOUR_REPOSITORY_URL` if necessary |
+| `rejected — fetch first` | The remote contains commits missing locally | Review and integrate the remote changes before pushing; do not overwrite them blindly |
+
+## 13. Important Git Commands
+
+| Command | Purpose |
+|---|---|
+| `git --version` | Check Git version |
+| `git init` | Initialize a repository |
+| `git status` | Check file and repository status |
+| `git add .` | Stage changes |
+| `git commit -m "message"` | Save a local commit |
+| `git remote -v` | View remote repositories |
+| `git branch` | View local branches |
+| `git branch -M main` | Rename the current branch to `main` |
+| `git push -u origin main` | Push commits and set upstream |
+| `git push` | Push new commits to the configured upstream |
+| `git log --oneline` | View recent commits |
+
+## 14. Practical Assignment for Students
+
+Complete the following tasks:
+
+- [ ] Create a folder named `MyWebsite`.
+- [ ] Create `index.html`, `style.css`, and `script.js`.
+- [ ] Initialize Git in the project folder.
+- [ ] Add and commit the files.
+- [ ] Create a GitHub repository.
+- [ ] Connect the local project to GitHub.
+- [ ] Push the code to the `main` branch.
+- [ ] Make one small change and push the update.
+- [ ] Share your GitHub repository URL with your trainer.
+
+**Expected outcome:** Students should be able to upload a basic website to GitHub and update it whenever the code changes.
+
+**Remember:** Git stores and tracks your code; GitHub hosts the repository online. Uploading code to GitHub does not automatically make a website live. To publish the website, configure a hosting service such as GitHub Pages separately.
